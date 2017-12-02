@@ -35,7 +35,10 @@
     },
     mounted () {
       this.$http.get('http://321b2b14.ngrok.io/api/v1/emergencias').then(result => {
-        console.log(result)
+        console.log('result', result)
+        this.hurtTypes = result.body.data
+      }, result => {
+        this.result = result
       })
     },
     computed: {
@@ -56,8 +59,6 @@
       }
     },
     methods: {
-      searchHurtType (val) {
-      },
       filterByTerm (value) {
         return removeDiacritics(value).toUpperCase().indexOf(removeDiacritics(this.searchTerm).toUpperCase()) >= 0
       },
@@ -78,18 +79,7 @@
         hurtSelecteds: [],
         hurtCurrent: null,
         searchTerm: '',
-        hurtTypes: [
-          'Hemorragia',
-          'Estado de Choque',
-          'Sindrome Coronariana',
-          'Trauma de Extremidade',
-          'Trauma Abdominal',
-          'Trauma Cranio Encefalico',
-          'Traumatismo Raquimedular',
-          'Trauma Toracico',
-          'Lesao Termica'
-
-        ],
+        hurtTypes: [],
         configDataHurts: {
           'Hemorragia': {
             type: 'radio',

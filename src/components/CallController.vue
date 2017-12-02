@@ -22,12 +22,12 @@
       <div class="row">
         <div class="col-md-3 mb-4">
           <label>Telefone 1</label>
-          <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone1"
+          <masked-input class="form-control" mask="(11) 11111-1111" v-model="call.telefone1"
                         placeholder="Telefone Principal"></masked-input>
         </div>
         <div class="col-md-3 mb-4">
           <label>Telefone 2</label>
-          <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone2"
+          <masked-input class="form-control" mask="(11) 11111-1111" v-model="call.telefone2"
                         placeholder="Telefone Opcional"></masked-input>
         </div>
         <div class="col-md-4 mb-4">
@@ -77,6 +77,7 @@
   import MaskedInput from 'vue-masked-input'
   import PatientCard from './PatientCard'
   import VSelect from 'vue-select'
+
   export default {
     components: {
       MaskedInput,
@@ -109,7 +110,7 @@
     },
     computed: {
       municipiosToSelect () {
-        return this.municipios.map(item => ({label: item.nome, id: item.id}))
+        return this.municipios.map(item => ({label: item.nome, value: item.id}))
       }
     },
     methods: {

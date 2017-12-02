@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <input type="text" v-model="call.requester">
+  <div class="form">
+    <input class="inp" type="text" v-model="call.requester">
     {{call.requester}}
   </div>
 </template>
@@ -15,6 +15,6 @@
     }
   }
 </script>
-<style scoped >
+<style lang="scss" scoped>
 
 </style>

@@ -56,10 +56,10 @@
         }
       }
     },
-    watch:{
-      "value.idade":function (val) {
-        if(this.value.idade <= 0){
-          this.value.idade = 1;
+    watch: {
+      'value.idade': function (val) {
+        if (this.value.idade <= 0) {
+          this.value.idade = 1
         }
       }
     }

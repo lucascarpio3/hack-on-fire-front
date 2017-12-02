@@ -8,11 +8,12 @@
     </div>
 
     <div class="col-sm-9">
-      {{hurtCurrent}}
-      <ul>
-        <li v-if="hurtSelecteds.length >= 1 " >{{hurtSelecteds}}</li>
+      <div class="configs" v-for="key in keys">
+        <input type="text" v-if="configDataHurts[key].type === 'text'">
+      </div>
+      <ul class="hurts-selecteds">
+        <li v-if="hurtSelecteds.length >= 1 ">{{hurtSelecteds}}</li>
       </ul>
-
     </div>
   </div>
 </template>
@@ -22,9 +23,18 @@
 
   export default {
     name: 'needMedicalCare',
+    props: {
+      entity: {
+        type: Object,
+        required: true
+      }
+    },
     computed: {
-      hurtTypeFiltred: function () {
+      hurtTypeFiltred () {
         return this.hurtTypes.filter(this.removeSelected).filter(this.filterByTerm)
+      },
+      keys () {
+        return Object.keys(this.configDataHurts)
       }
     },
     methods: {
@@ -62,14 +72,17 @@
           'Trauma Toracico',
           'Lesao Termica'
 
-        ]
+        ],
+        configDataHurts: {
+          'Hemorragia': {
+            type: 'radio',
+            values: ['interna', 'externa']
+          }
+        }
 
       }
     }
-
   }
 </script>
-
 <style scoped>
-
 </style>

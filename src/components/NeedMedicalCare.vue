@@ -1,14 +1,17 @@
 <template>
   <div class="row">
-    <div class="col-md-3">
-      <input type="text" @keyup="searchHurtType" v-model="searchTerm" @keyup.enter="selectFirst">
+    <div class="col-sm-3">
+      <input type="text" @keyup="searchHurtType" v-model="searchTerm" @keyup.enter="selectFirst" @focus="">
       <ul v-if="searchTerm.length > 0">
         <li v-for="hType in hurtTypeFiltred ">{{hType}}</li>
       </ul>
     </div>
 
-    <div class="col-md-9">
-
+    <div class="col-sm-9">
+      {{hurtCurrent}}
+      <ul>
+        <li v-if="hurtSelecteds.length >= 1 " >{{hurtSelecteds}}</li>
+      </ul>
 
     </div>
   </div>
@@ -21,20 +24,32 @@
     name: 'needMedicalCare',
     computed: {
       hurtTypeFiltred: function () {
-        return this.hurtTypes.filter(value => removeDiacritics(value).toUpperCase().indexOf(removeDiacritics(this.searchTerm).toUpperCase()) >= 0)
+        return this.hurtTypes.filter(this.removeSelected).filter(this.filterByTerm)
       }
     },
     methods: {
       searchHurtType (val) {
 
       },
+      filterByTerm (value) {
+        return removeDiacritics(value).toUpperCase().indexOf(removeDiacritics(this.searchTerm).toUpperCase()) >= 0
+      },
+      removeSelected (hurtType) {
+        return this.hurtSelecteds.indexOf(hurtType) < 0
+      },
       selectFirst () {
-        this.hurtSelected = this.hurtTypeFiltred[0]
+        if (this.searchTerm.length > 0) {
+          if (this.hurtCurrent) {
+            this.hurtSelecteds.unshift(this.hurtCurrent)
+          }
+          this.hurtCurrent = this.hurtTypeFiltred[0]
+        }
       }
     },
     data () {
       return {
-        hurtSelected: null,
+        hurtSelecteds: [],
+        hurtCurrent: null,
         searchTerm: '',
         hurtTypes: [
           'Hemorragia',
@@ -48,8 +63,10 @@
           'Lesao Termica'
 
         ]
+
       }
     }
+
   }
 </script>
 

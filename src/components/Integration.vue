@@ -1,30 +1,33 @@
 <template>
   <div>
-    <list-cards name="Pacientes" :cards="cards" :modelDefinition="cardModel" @addCard="addCard"></list-cards>
+    <div>
+      Pacientes:
+      <ul>
+        <card v-for="(card,index) in cards" :key="index" :value="card"
+              @change="card => cards[index] = card"
+              @remove="cards.splice(index,1)"></card>
+        <button @click="addCard">+</button>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
-  import ListCards from './ListCard'
+  import PatientCard from './PatientCard'
 
   export default {
     components: {
-      ListCards
+      Card: PatientCard
     },
     data () {
       return {
         result: [],
-        cards: [],
-        cardModel: {
-          sexo: {
-            type: 'text',
-            placeholder: 'Sexo',
-            value: ''
-          },
-          idade: {
-            type: 'number',
-            placeholder: 'Idade'
+        cards: [
+          {
+            sexo: 'F',
+            idade: 18,
+            queixas: 'Dores fortes nos ombros.'
           }
-        }
+        ]
       }
     },
     mounted () {
@@ -41,7 +44,12 @@
     },
     methods: {
       addCard () {
-        this.cards.push({sexo: 'M', idade: 0})
+        this.cards.push(
+          {
+            sexo: 'M',
+            idade: 0,
+            queixas: 'test'
+          })
       }
     }
   }

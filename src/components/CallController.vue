@@ -1,84 +1,104 @@
 <template>
-  <div id="container">
-    <div id="top">
-      <div id="locationData">
-        <input type="text" v-model="call.cep" placeholder="CEP">
-        <input type="text" v-model="call.telephone" placeholder="Telefone">
-        <input type="text" v-model="call.city" placeholder="Cidade">
-        <input type="text" v-model="call.adress" placeholder="Endereço">
-        <input type="text" v-model="call.number" placeholder="Número">
-        <input type="text" v-model="call.neighborhood" placeholder="Bairro">
-      </div>
-      <div id="personData">
-        <input type="text" v-model="call.requester" placeholder="Solicitante">
-        <input type="text" v-model="call.pacient" placeholder="Paciente">
-        <input type="text" v-model="call.gender" placeholder="Sexo">
-        <input type="text" v-model="call.age" placeholder="Idade">
-        <input type="text" v-model="call.complaint" placeholder="Queixa do paciente">
-
-      </div>
-
+  <div class="container"></br>
+    <div class="jumbotron">
+      <h4 class="card-title">CHAMADA</h4>
     </div>
-    <div>
-      <input type="text" v-model="call.description" placeholder="Descrição da Ocorrência">
+    <div class="from-grup">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <label>Solicitante</label>
+            <input type="text" class="form-control" placeholder="Solicitante" v_molde="call.solicitante">
+          </div>
+          <div class="col-md-3 mb-4">
+            <label>Telefone 1</label>
+            <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone1"
+                          placeholder="Telefone Principal"></masked-input>
+          </div>
+          <div class="col-md-3 mb-4">
+            <label>Telefone 2</label>
+            <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone2"
+                          placeholder="Telefone Opcional"></masked-input>
+          </div>
+        </div>
+        </br>
+
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <label>Observação</label>
+            <input type="text" class="form-control" placeholder="Observação" v_molde="call.queixa">
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="col-md-2 mb-4">
+            <label>CEP</label>
+            <masked-input class="form-control" placeholder="CEP" v_molde="call.cep" mask="11111-111"></masked-input>
+          </div>
+          <div class="col-md-4 mb-4">
+            <label>Municipio</label>
+            <input type="text" class="form-control" placeholder="Municipio" v_molde="call.municipio_id">
+          </div>
+          <div class="col-md-4 mb-4">
+            <label>Endereço</label>
+            <input type="text" class="form-control" placeholder="Endereço" v_molde="call.endereco">
+          </div>
+          <div class="col-md-2 mb-4">
+            <label>Número</label>
+            <input type="text" class="form-control" placeholder="Número" v_molde="call.numero">
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <label>Bairro</label>
+            <input type="text" class="form-control" v_model="call." placeholder="Bairro" v_molde="call.bairro">
+          </div>
+        </div>
+        </br>
+        <div class="row btn_ocorrencia">
+          <div class="col-md-12 mb-3">
+            <button type="button" class="btn btn-primary">Cria Ocorrência</button>
+          </div>
+        </div>
+        </br>
+      </form>
     </div>
-    <div>
-
-    </div>
-
-
+    <pre>{{call}}</pre>
   </div>
 </template>
 <script>
+  import MaskedInput from 'vue-masked-input'
+
   export default {
+    components: {
+      MaskedInput
+    },
     data () {
       return {
         call: {
-          requester: ''
+          solicitante: '',
+          telefone1: '',
+          telefone2: ''
+
         }
       }
     }
   }
 </script>
 <style lang="scss" scoped>
-
-  #container {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    flex-grow: 1;
-    input {
-      margin: 4%;
-    }
-  }
-
-  #top {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    justify-content: space-around;
-  }
-
-  #personData {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-
-  }
-
-  #locationData {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-  }
-
-  input {
-    padding: 12px;
-    font-size: 12pt;
-    border: 1px solid #999;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+  .card-title {
+    /*text-align: center;*/
     width: 100%;
   }
+
+  .jumbotron {
+    background: #025aa5;
+    color: #fff;
+  }
+
+  .btn_ocorrencia {
+    /*text-align: center;*/
+  }
+
 </style>

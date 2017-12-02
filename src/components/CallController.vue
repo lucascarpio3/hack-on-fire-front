@@ -1,9 +1,8 @@
 <template>
-  <div class="container"></br>
+  <div class="container"><br>
     <div class="jumbotron">
       <h4 class="card-title">CHAMADA</h4>
     </div>
-
     <div class="from-grup">
       <div class="row">
         <div class="col-md-6 mb-4">
@@ -19,8 +18,7 @@
           <input type="text" class="form-control" placeholder="Municipio" v_molde="call.municipio_id">
         </div>
       </div>
-      </br>
-
+      <br>
       <div class="row">
 
         <div class="col-md-3 mb-4">
@@ -42,8 +40,7 @@
           <input type="text" class="form-control" placeholder="Número" v_molde="call.numero">
         </div>
       </div>
-      </br>
-
+      <br>
       <div class="row">
         <div class="col-md-6 mb-4">
           <label>Observação</label>
@@ -55,9 +52,7 @@
           <input type="text" class="form-control" v_model="call." placeholder="Bairro" v_molde="call.bairro">
         </div>
       </div>
-      </br>
-
-
+      <br>
       <div>
         <div>
           Pacientes:
@@ -74,9 +69,8 @@
           <button type="button" class="btn btn-primary">Cria Ocorrência</button>
         </div>
       </div>
-      </br>
+      <br>
     </div>
-    <pre>{{call}}</pre>
   </div>
 
 
@@ -95,23 +89,30 @@
         call: {
           solicitante: '',
           telefone1: '',
-          telefone2: ''
+          telefone2: '',
+          bairro: '',
+          endereco: '',
+          numero: ''
 
         },
 
         result: [],
-        cards: [
-          {
-            sexo: 'F',
-            idade: 18,
-            queixas: 'Dores fortes nos ombros.'
-          }
-        ]
+        cards: [],
+        payload: {}
       }
     },
 
     mounted () {
       console.log('teste')
+      this.$http.post('http://321b2b14.ngrok.io/api/v1/bairros', this.call).then(result => {
+        console.log(result)
+        this.result = result.body.data
+        if (!result.ok) {
+          this.result = result
+        }
+      }, result => {
+        this.result = result
+      })
       this.$http.get('http://321b2b14.ngrok.io/api/v1/bairros').then(result => {
         console.log(result)
         this.result = result.body.data

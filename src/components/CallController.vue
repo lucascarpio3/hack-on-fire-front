@@ -55,18 +55,18 @@
       <br>
       <div>
         <div>
-          Pacientes:
+          <label>Pacientes</label>
           <ul class="patients">
             <card v-for="(card,index) in cards" :key="index" :value="card"
                   @change="card => cards[index] = card"
                   @remove="cards.splice(index,1)"></card>
-            <button @click="addCard">+</button>
+            <button @click="addCard" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
           </ul>
         </div>
       </div>
       <div class="row btn_ocorrencia">
         <div class="col-md-12 mb-3">
-          <button type="button" class="btn btn-primary">Cria Ocorrência</button>
+          <button type="button" class="btn btn-success">Cria Ocorrência</button>
         </div>
       </div>
       <br>
@@ -129,7 +129,7 @@
           {
             sexo: 'M',
             idade: 0,
-            queixas: 'test'
+            queixas: ''
           })
       }
     }
@@ -157,4 +157,7 @@
     padding: 0 !important;
   }
 
+  .btn-primary{
+    margin-left: 2%;
+  }
 </style>

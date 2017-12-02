@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-sm-3">
-      <input type="text" @keyup="searchHurtType" v-model="searchTerm" @keyup.enter="selectFirst" @focus="">
+      <input type="text" @keyup="searchHurtType" class="form-control" v-model="searchTerm" @keyup.enter="selectFirst" @focus="">
       <ul v-if="searchTerm.length > 0">
         <li v-for="hType in hurtTypeFiltred ">{{hType}}</li>
       </ul>

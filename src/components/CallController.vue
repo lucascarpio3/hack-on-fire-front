@@ -1,17 +1,25 @@
 <template>
-  <div class="form">
-    <input class="inp" type="text" v-model="call.requester" placeholder="Solicitante">
-    <input class="inp" type="text" v-model="call.telephone" placeholder="Telefone">
-    <input class="inp" type="text" v-model="call.city" placeholder="Municipio">
-    <input class="inp" type="text" v-model="call.address" placeholder="Endereço">
-    <input class="inp" type="text" v-model="call.number" placeholder="Número">
-    <input class="inp" type="text" v-model="call.neighborhood" placeholder="Bairro">
-    <input class="inp" type="text" v-model="call.reference" placeholder="Referênce">
-    <input class="inp" type="text" v-model="call.patient" placeholder="Paciente">
-    <input class="inp" type="text" v-model="call.sex" placeholder="Sexo">
-    <input class="inp" type="text" v-model="call.age" placeholder="Idade">
-    <input class="inp" type="text" v-model="call.complaint" placeholder="Queixa da paciente">
-    <input class="inp" type="text" v-model="call.comments" placeholder="Observações">
+  <div>
+    <input type="text" v-model="call.cep" placeholder="CEP">
+    <input type="text" v-model="call.telephone" placeholder="Telefone">
+    <input type="text" v-model="call.city" placeholder="Cidade">
+    <input type="text" v-model="call.adress" placeholder="Endereço">
+    <input type="text" v-model="call.number" placeholder="Número">
+    <input type="text" v-model="call.neighborhood" placeholder="Bairro">
+
+
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+
+    <input type="text" v-model="call.pacient" placeholder="Paciente">
+    <input type="text" v-model="call.gender" placeholder="Sexo">
+    <input type="text" v-model="call.age" placeholder="Idade">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+    <input type="text" v-model="call.requester" placeholder="Solicitante">
+
   </div>
 </template>
 <script>

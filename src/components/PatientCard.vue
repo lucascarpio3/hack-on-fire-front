@@ -20,14 +20,29 @@
                   placeholder="Queixas"></textarea>
       </div>
     </div>
+    <label for="isMedic">
+      <input type="checkbox" id="isMedic" v-model="isMedic">
+      Emergência médica
+    </label>
+      <medic-care v-if="isMedic"></medic-care>
   </li>
 </template>
 <script>
+  import NeedMedicalCare from './NeedMedicalCare'
+
   export default {
+    components: {
+      medicCare: NeedMedicalCare
+    },
     props: {
       value: {
         type: Object,
         required: true
+      }
+    },
+    data () {
+      return {
+        isMedic: false
       }
     },
     computed: {

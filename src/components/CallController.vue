@@ -15,12 +15,11 @@
         </div>
         <div class="col-md-4 mb-4">
           <label>Municipio</label>
-          <input type="text" class="form-control" placeholder="Municipio" v-model="call.municipio_id">
+          <v-select :options="municipiosToSelect" :value.sync="call.municipio_id"></v-select>
         </div>
       </div>
       <br>
       <div class="row">
-
         <div class="col-md-3 mb-4">
           <label>Telefone 1</label>
           <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone1"
@@ -71,17 +70,18 @@
       </div>
       <br>
     </div>
-    <pre>{{call}}</pre>
+    <pre>{{call}}{{municipios}}</pre>
   </div>
 </template>
 <script>
   import MaskedInput from 'vue-masked-input'
   import PatientCard from './PatientCard'
-
+  import VSelect from 'vue-select'
   export default {
     components: {
       MaskedInput,
-      Card: PatientCard
+      Card: PatientCard,
+      VSelect
     },
     data () {
       return {
@@ -91,16 +91,27 @@
           telefone2: '',
           bairro_id: '',
           endereco: '',
-          numero: ''
-
+          numero: '',
+          observacao: '',
+          municipio_id: ''
         },
-
+        municipios: [],
+        bairros: [],
         result: [],
         cards: [],
         payload: {}
       }
     },
-
+    mounted () {
+      this.$http.get('http://321b2b14.ngrok.io/api/v1/municipios').then(result => {
+        this.municipios = result.body.data
+      })
+    },
+    computed: {
+      municipiosToSelect () {
+        return this.municipios.map(item => ({label: item.nome, id: item.id}))
+      }
+    },
     methods: {
       addCard () {
         this.cards.push({
@@ -110,7 +121,6 @@
         })
       },
       clearFields () {
-        console.log('chama eu', Object.keys(this.call))
         for (const key in Object.keys(this.call)) {
           this.call[key] = ''
         }

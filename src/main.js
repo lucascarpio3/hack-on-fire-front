@@ -6,9 +6,10 @@ import router from './router'
 import resource from 'vue-resource'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/scss/font-awesome.scss'
+import VueSelect from 'vue-select'
 
 Vue.config.productionTip = false
-
+Vue.use(VueSelect)
 Vue.use(resource)
 
 /* eslint-disable no-new */

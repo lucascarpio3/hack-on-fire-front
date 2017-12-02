@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import CallController from '@/components/CallController'
 import Integration from '@/components/Integration'
+import NeedMedicalCare from '@/components/NeedMedicalCare'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/integration',
       name: 'Integration',
       component: Integration
+    },
+    {
+      path: '/medical',
+      name: 'Medical',
+      component: NeedMedicalCare
     }
   ]
 })

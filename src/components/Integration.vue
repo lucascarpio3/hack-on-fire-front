@@ -2,7 +2,7 @@
   <div>
     <div>
       Pacientes:
-      <ul>
+      <ul class="patients">
         <card v-for="(card,index) in cards" :key="index" :value="card"
               @change="card => cards[index] = card"
               @remove="cards.splice(index,1)"></card>
@@ -54,3 +54,9 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .patients {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+</style>

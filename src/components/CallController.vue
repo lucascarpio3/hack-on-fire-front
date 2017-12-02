@@ -66,14 +66,12 @@
       </div>
       <div class="row btn_ocorrencia">
         <div class="col-md-12 mb-3">
-          <button type="button" class="btn btn-primary">Cria Ocorrência</button>
+          <button type="button" class="btn btn-primary" @click="sendCall">Cria Ocorrência</button>
         </div>
       </div>
       <br>
     </div>
   </div>
-
-
 </template>
 <script>
   import MaskedInput from 'vue-masked-input'
@@ -104,36 +102,52 @@
 
     mounted () {
       console.log('teste')
-      this.$http.post('http://321b2b14.ngrok.io/api/v1/bairros', this.call).then(result => {
-        console.log(result)
-        this.result = result.body.data
-        if (!result.ok) {
-          this.result = result
-        }
-      }, result => {
-        this.result = result
-      })
-      this.$http.get('http://321b2b14.ngrok.io/api/v1/bairros').then(result => {
-        console.log(result)
-        this.result = result.body.data
-        if (!result.ok) {
-          this.result = result
-        }
-      }, result => {
-        this.result = result
-      })
     },
     methods: {
       addCard () {
-        this.cards.push(
-          {
-            sexo: 'M',
-            idade: 0,
-            queixas: 'test'
-          })
+        this.cards.push({
+          sexo: 'M',
+          idade: 0,
+          queixas: 'test'
+        })
+      },
+      clearFields () {
+        console.log('chama eu', Object.keys(this.call))
+        for (const key in Object.keys(this.call)) {
+          this.call[key] = ''
+        }
+      },
+      sendCall () {
+        this.$http.post('http://321b2b14.ngrok.io/api/v1/chamadas', this.call).then(result => {
+          console.log(result)
+          this.result = result.body.data
+          this.clearFields()
+        }, result => {
+          this.result = result
+        })
+        this.$http.get('http://321b2b14.ngrok.io/api/v1/bairros').then(result => {
+          console.log(result)
+          this.result = result.body.data
+          this.clearFields()
+        }, result => {
+          this.result = result
+        })
+        this.$http.get('http://321b2b14.ngrok.io/api/v1/emergencias').then(result => {
+          console.log(result)
+          this.result = result.body.data
+          this.clearFields()
+        }, result => {
+          this.result = result
+        })
+        this.$http.get('http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/1/').then(result => {
+          console.log(result)
+          this.result = result.body.data
+          this.clearFields()
+        }, result => {
+          this.result = result
+        })
       }
     }
-
   }
 </script>
 <style lang="scss" scoped>

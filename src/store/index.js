@@ -6,8 +6,7 @@ import actions from './actions'
 /**
  MODULES
  */
-import customer from './modules/call'
-
+import call from './modules/call'
 
 Vue.use(Vuex)
 
@@ -15,5 +14,5 @@ export default new Vuex.Store({
   state,
   mutations,
   actions,
-  modules: {}
+  modules: {call}
 })

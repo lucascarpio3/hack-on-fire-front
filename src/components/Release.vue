@@ -9,7 +9,7 @@
     <br>
     <div class="row">
       <div class="panel-group col-xs-8">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" v-for="call in chamadas">
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" href="#collapse1">Status: Em Andamento</a>
@@ -142,6 +142,7 @@
     },
     data () {
       return {
+        chamadas: [],
         call: {
           solicitante: '',
           telefone1: '',
@@ -215,6 +216,12 @@
           }
         ]
       }
+    },
+    mounted () {
+      this.$http.get('http://321b2b14.ngrok.io/api/v1/chamadas').then(result => {
+        console.log('aaaaaaa', result)
+        this.chamadas = result.body.data
+      })
     },
     methods: {
       treatValue (value) {

@@ -1,10 +1,6 @@
 <template>
   <div class="container">
     <hk-header></hk-header>
-
-    <!--div class="jumbotron">
-      <h4 class="card-title">CHAMADA</h4>
-    </div-->
     <div class="from-grup">
       <div class="row">
         <div class="col-md-6 mb-4">

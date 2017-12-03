@@ -12,7 +12,7 @@
             <a href="#/call"><IMG SRC="static/logo.jpeg" height="50px"/></a>
           </div>
 
-          <a class="navbar-brand" href="#">Chamada</a>
+          <a class="navbar-brand" href="#">{{$route.name}}</a>
 
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -21,12 +21,17 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#/call"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Chamada</a></li>
-              <li><router-link :to="{ path: '/header'}" replace><i class="fa fa-plane" aria-hidden="true"></i> Despacho</router-link></li>
+              <li><router-link :to="{ path: '/release'}" replace><i class="fa fa-plane" aria-hidden="true"></i> Despacho</router-link></li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
+
+
+
+
+
   </div>
 </template>
 

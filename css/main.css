@@ -30,7 +30,6 @@ a img {
   margin: 6px;
 }
 
-
 .navbar {
   top: 0px;
 }
@@ -70,4 +69,11 @@ a img {
 
 .nav li a:hover {
   background: rgba(255,255,255,0.3) !important;
+}
+
+.linha {
+  text-align: center;
+  font-size: 20px;
+  color: #025aa5;
+  border-bottom: 5px solid #24679a;
 }

@@ -85,31 +85,21 @@
       </div>
       <br>
     </div>
-<<<<<<< HEAD
-    <!--pre>{{call}}</pre-->
-=======
     <pre>{{bairros}}{{municipios}}</pre>
->>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
   </div>
 </template>
 <script>
   import MaskedInput from 'vue-masked-input'
   import PatientCard from './PatientCard'
-<<<<<<< HEAD
   import Header from './Header'
-=======
   import VSelect from 'vue-select'
->>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
 
   export default {
     components: {
       MaskedInput,
       Card: PatientCard,
-<<<<<<< HEAD
-      HkHeader: Header
-=======
+      HkHeader: Header,
       VSelect
->>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
     },
     data () {
       return {

@@ -18,7 +18,7 @@ export default new Router({
     },
     {
       path: '/call',
-      name: 'Call',
+      name: 'Chamada',
       component: CallController
     },
     {
@@ -38,7 +38,7 @@ export default new Router({
     },
     {
       path: '/release',
-      name: 'Release',
+      name: 'Despacho',
       component: Release
     }
   ]

@@ -96,9 +96,13 @@
             'Observação': {
               type: 'text'
             }
+          },
+          'Choque': {
+            'Sintomas': {
+              type: 'text'
+            }
           }
         }
-
       }
     },
     watch: {

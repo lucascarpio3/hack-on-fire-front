@@ -1,8 +1,10 @@
 <template>
-  <div class="container"><br>
-    <div class="jumbotron">
+  <div class="container">
+    <hk-header></hk-header>
+
+    <!--div class="jumbotron">
       <h4 class="card-title">CHAMADA</h4>
-    </div>
+    </div-->
     <div class="from-grup">
       <div class="row">
         <div class="col-md-6 mb-4">
@@ -53,6 +55,17 @@
         </div>
       </div>
       <br>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label>Prioridade da Chamada</label><br>
+          <input type="radio" name="gender" v-model="call.prioridade" value="M"> Baixo
+          <input type="radio" name="gender" v-model="call.prioridade" value="F"> Medio
+          <input type="radio" name="gender" v-model="call.prioridade" value="F"> Alto
+        </div>
+      </div><br>
+
+
       <div>
         <div>
           <label>Pacientes</label>
@@ -71,17 +84,19 @@
       </div>
       <br>
     </div>
-    <pre>{{call}}</pre>
+    <!--pre>{{call}}</pre-->
   </div>
 </template>
 <script>
   import MaskedInput from 'vue-masked-input'
   import PatientCard from './PatientCard'
+  import Header from './Header'
 
   export default {
     components: {
       MaskedInput,
-      Card: PatientCard
+      Card: PatientCard,
+      HkHeader: Header
     },
     data () {
       return {
@@ -147,26 +162,4 @@
 </script>
 <style lang="scss" scoped>
 
-  .card-title {
-    text-align: center;
-    width: 100%;
-  }
-
-  .jumbotron {
-    background: #025aa5;
-    color: #fff;
-  }
-
-  .btn_ocorrencia {
-    text-align: center;
-  }
-
-  .patients {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .btn-primary {
-    margin-left: 2%;
-  }
 </style>

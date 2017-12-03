@@ -10,11 +10,11 @@
 
     <div class="col-sm-9">
       <div class="configs" v-for="key in keys" v-if="keys">
-        <input type="text" v-if="configDataHurts[hurtCurrent.descricao][key].type === 'text'"
+        <input class="form-control" type="text" v-if="configDataHurts[hurtCurrent.descricao][key].type === 'text'"
                v-model="patientMedicalCare[hurtCurrent.descricao][key]" :placeholder="key">
         <label v-for="val in configDataHurts[hurtCurrent.descricao][key].values"
                v-else-if="configDataHurts[hurtCurrent.descricao][key].type === 'radio'">
-          <input type="radio" v-model="patientMedicalCare[hurtCurrent.descricao][key]" :placeholder="key"
+          <input class="tipo" type="radio" v-model="patientMedicalCare[hurtCurrent.descricao][key]" :placeholder="key"
                   :value="val">
           {{val}}
         </label>

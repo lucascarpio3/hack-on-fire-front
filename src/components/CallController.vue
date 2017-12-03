@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-4 mb-4">
           <label>Municipio</label>
-          <v-select :options="municipiosToSelect" :value.sync="call.municipio_id"></v-select>
+          <v-select :options="municipiosToSelect" v-model="call.municipio_id"></v-select>
         </div>
       </div>
       <br>
@@ -48,7 +48,7 @@
 
         <div class="col-md-6 mb-4">
           <label>Bairro</label>
-          <input type="text" class="form-control" v-model="call.bairro_id" placeholder="Bairro">
+          <v-select :options="bairros" v-model="call.bairro_id"></v-select>
         </div>
       </div>
       <br>
@@ -59,7 +59,9 @@
             <card v-for="(card,index) in cards" :key="index" :value="card"
                   @change="card => cards[index] = card"
                   @remove="cards.splice(index,1)"></card>
-            <button @click="addCard" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button @click="addCard" class="btn btn-primary">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
           </ul>
         </div>
       </div>
@@ -70,7 +72,7 @@
       </div>
       <br>
     </div>
-    <pre>{{call}}{{municipios}}</pre>
+    <pre>{{bairros}}{{municipios}}</pre>
   </div>
 </template>
 <script>
@@ -114,12 +116,19 @@
       }
     },
     methods: {
-      addCard () {
-        this.cards.push({
-          sexo: 'M',
-          idade: 0,
-          queixas: ''
+      treatValue (value) {
+        return Object.assign({}, value, {
+          municipio_id: value.municipio_id.value,
+          bairro_id: value.bairro_id.value
         })
+      },
+      addCard () {
+        this.cards.push(
+          {
+            sexo: 'M',
+            idade: 0,
+            queixas: ''
+          })
       },
       clearFields () {
         for (const key in Object.keys(this.call)) {
@@ -127,31 +136,22 @@
         }
       },
       sendCall () {
-        this.$http.post('http://321b2b14.ngrok.io/api/v1/chamadas', this.call).then(result => {
-          console.log(result)
-          console.log(this.call)
+        console.log(this.treatValue(this.call))
+        this.$http.post('http://321b2b14.ngrok.io/api/v1/chamadas', this.treatValue(this.call)).then(result => {
           this.result = result.body.data
+
           this.clearFields()
         }, result => {
           this.result = result
         })
-      },
-      methods: {
-        addCard () {
-          this.cards.push(
-            {
-              sexo: 'M',
-              idade: 0,
-              queixas: ''
-            })
-          this.$http.get('http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/1/').then(result => {
-            console.log(result)
-            this.result = result.body.data
-            this.clearFields()
-          }, result => {
-            this.result = result
-          })
-        }
+      }
+    },
+    watch: {
+      'call.municipio_id': function (val) {
+        console.log('aaaaaa', val)
+        this.$http.get(`http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/${val.value}/`).then(result => {
+          this.bairros = result.body.data.map(item => ({label: item.nome, value: item.id}))
+        })
       }
     }
   }

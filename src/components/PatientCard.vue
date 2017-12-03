@@ -27,7 +27,7 @@
       <input type="checkbox" id="isMedic" v-model="isMedic">
       Emergência médica
     </label>
-      <medic-care v-if="isMedic" :entity="card" @change=""></medic-care>
+    <medic-care v-if="isMedic" :entity="card" @change=""></medic-care>
   </li>
 </template>
 <script>
@@ -88,7 +88,6 @@
 
   .btn-danger {
     position: absolute;
-    //right: 0px;
     top: 0;
   }
 </style>

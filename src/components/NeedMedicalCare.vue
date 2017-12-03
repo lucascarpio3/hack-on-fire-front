@@ -18,7 +18,6 @@
                   :value="val">
           {{val}}
         </label>
-
       </div>
       <ul class="hurts-selecteds">
         <li v-if="hurtSelecteds.length >= 1 ">{{hurtSelecteds}}</li>
@@ -75,6 +74,7 @@
             this.hurtSelecteds.unshift(this.hurtCurrent)
           }
           this.hurtCurrent = this.hurtTypeFiltred[0]
+          this.searchTerm = this.hurtTypeFiltred[0].descricao
         }
       },
       searchHurtType () {

@@ -69,9 +69,9 @@
         <div>
           <label>Pacientes</label>
           <ul class="patients">
-            <card v-for="(card,index) in cards" :key="index" :value="card"
-                  @change="card => cards[index] = card"
-                  @remove="cards.splice(index,1)"></card>
+            <card v-for="(card,index) in call.pacientes" :key="index" :value="card"
+                  @change="card => call.pacientes[index] = card"
+                  @remove="call.pacientes.splice(index,1)"></card>
             <button @click="addCard" class="btn btn-primary">
               <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
@@ -85,7 +85,7 @@
       </div>
       <br>
     </div>
-    <pre>{{bairros}}{{municipios}}</pre>
+
   </div>
 </template>
 <script>
@@ -111,12 +111,12 @@
           endereco: '',
           numero: '',
           observacao: '',
-          municipio_id: ''
+          municipio_id: '',
+          pacientes: []
         },
         municipios: [],
         bairros: [],
         result: [],
-        cards: [],
         payload: {}
       }
     },
@@ -138,7 +138,7 @@
         })
       },
       addCard () {
-        this.cards.push(
+        this.call.pacientes.push(
           {
             sexo: 'M',
             idade: 0,
@@ -163,7 +163,6 @@
     },
     watch: {
       'call.municipio_id': function (val) {
-        console.log('aaaaaa', val)
         this.$http.get(`http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/${val.value}/`).then(result => {
           this.bairros = result.body.data.map(item => ({label: item.nome, value: item.id}))
         })

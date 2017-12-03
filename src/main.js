@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/scss/font-awesome.scss'
 import '../css/main.css'
 import VueSelect from 'vue-select'
+import 'bootstrap'
 
 Vue.config.productionTip = false
 Vue.use(VueSelect)

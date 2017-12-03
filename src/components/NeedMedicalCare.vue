@@ -8,7 +8,7 @@
       </ul>
     </div>
 
-    <div class="col-sm-9">
+    <div class="col-sm-7">
       <div class="configs" v-for="key in keys" v-if="keys">
         <input class="form-control" type="text" v-if="configDataHurts[hurtCurrent.descricao][key].type === 'text'"
                v-model="patientMedicalCare[hurtCurrent.descricao][key]" :placeholder="key">
@@ -19,10 +19,13 @@
           {{val}}
         </label>
       </div>
+
+
       <ul class="hurts-selecteds">
         <li v-if="hurtSelecteds.length >= 1 ">{{hurtSelecteds}}</li>
       </ul>
     </div>
+    <button class="fa fa-plus btn btn-primary"></button>
   </div>
 </template>
 
@@ -97,7 +100,7 @@
               type: 'text'
             }
           },
-          'Choque': {
+          'Estado de Choque': {
             'Sintomas': {
               type: 'text'
             }

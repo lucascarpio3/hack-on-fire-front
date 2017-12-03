@@ -3,8 +3,8 @@
     <div class="row">
       <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xs-4">
         <label for="gender">Sexo</label><br>
-        <input type="radio" name="gender" id="gender" v-model="card.sexo" value="M"> Masculino
-        <input type="radio" name="gender" v-model="card.sexo" value="F"> Feminino
+        <input type="radio" name="gender" id="gender" v-model="card.genero" value="M"> Masculino
+        <input type="radio" name="gender" v-model="card.genero" value="F"> Feminino
       </div>
       <div class="form-group col-lg-2 col-sm-5 col-md-5 col-xs-5">
         <label for="age">Idade</label><br>

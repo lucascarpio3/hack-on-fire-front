@@ -10,9 +10,10 @@
               <span class="icon-bar"></span>
             </button>
             <a href="#/call"><IMG SRC="static/logo.jpeg" height="50px"/></a>
+            <a class="navbar-brand hidden-sm hidden-lg hidden-md" href="#">{{$route.name}}</a>
           </div>
 
-          <a class="navbar-brand" href="#">{{$route.name}}</a>
+          <a class="navbar-brand hidden-xs" href="#">{{$route.name}}</a>
 
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">

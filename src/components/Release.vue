@@ -72,9 +72,9 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <label>Prioridade da Chamada</label><br>
-                    <input type="radio" name="gender" v-model="call.prioridade" value="M"> Baixo
-                    <input type="radio" name="gender" v-model="call.prioridade" value="F"> Medio
-                    <input type="radio" name="gender" v-model="call.prioridade" value="F"> Alto
+                    <input type="radio" name="gender" v-model="call.prioridade" value="baixo"> Baixo
+                    <input type="radio" name="gender" v-model="call.prioridade" value="medio"> Medio
+                    <input type="radio" name="gender" v-model="call.prioridade" value="alto"> Alto
                   </div>
                 </div>
                 <br>
@@ -226,7 +226,7 @@
       addCard () {
         this.call.pacientes.push(
           {
-            sexo: 'M',
+            genero: 'masculino',
             idade: 0,
             queixas: ''
           })

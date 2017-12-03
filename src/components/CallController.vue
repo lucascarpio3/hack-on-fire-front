@@ -136,7 +136,7 @@
       addCard () {
         this.call.pacientes.push(
           {
-            sexo: 'M',
+            genero: 'masculino',
             idade: 0,
             queixas: ''
           })

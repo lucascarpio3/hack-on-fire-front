@@ -31,7 +31,6 @@
       }
     },
     mounted () {
-      console.log('teste')
       this.$http.get('http://321b2b14.ngrok.io/api/v1/bairros').then(result => {
         console.log(result)
         this.result = result.body.data

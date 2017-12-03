@@ -17,20 +17,19 @@
         </div>
         <div class="col-md-4 mb-4">
           <label>Municipio</label>
-          <input type="text" class="form-control" placeholder="Municipio" v-model="call.municipio_id">
+          <v-select :options="municipiosToSelect" v-model="call.municipio_id"></v-select>
         </div>
       </div>
       <br>
       <div class="row">
-
         <div class="col-md-3 mb-4">
           <label>Telefone 1</label>
-          <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone1"
+          <masked-input class="form-control" mask="(11) 11111-1111" v-model="call.telefone1"
                         placeholder="Telefone Principal"></masked-input>
         </div>
         <div class="col-md-3 mb-4">
           <label>Telefone 2</label>
-          <masked-input class="form-control" mask="(11) 1111-11111" v-model="call.telefone2"
+          <masked-input class="form-control" mask="(11) 11111-1111" v-model="call.telefone2"
                         placeholder="Telefone Opcional"></masked-input>
         </div>
         <div class="col-md-4 mb-4">
@@ -51,7 +50,7 @@
 
         <div class="col-md-6 mb-4">
           <label>Bairro</label>
-          <input type="text" class="form-control" v-model="call.bairro_id" placeholder="Bairro">
+          <v-select :options="bairros" v-model="call.bairro_id"></v-select>
         </div>
       </div>
       <br>
@@ -73,7 +72,9 @@
             <card v-for="(card,index) in cards" :key="index" :value="card"
                   @change="card => cards[index] = card"
                   @remove="cards.splice(index,1)"></card>
-            <button @click="addCard" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button @click="addCard" class="btn btn-primary">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
           </ul>
         </div>
       </div>
@@ -84,19 +85,31 @@
       </div>
       <br>
     </div>
+<<<<<<< HEAD
     <!--pre>{{call}}</pre-->
+=======
+    <pre>{{bairros}}{{municipios}}</pre>
+>>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
   </div>
 </template>
 <script>
   import MaskedInput from 'vue-masked-input'
   import PatientCard from './PatientCard'
+<<<<<<< HEAD
   import Header from './Header'
+=======
+  import VSelect from 'vue-select'
+>>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
 
   export default {
     components: {
       MaskedInput,
       Card: PatientCard,
+<<<<<<< HEAD
       HkHeader: Header
+=======
+      VSelect
+>>>>>>> b38d1e5b12576ce017d1ee8b1904b49e9d8434f1
     },
     data () {
       return {
@@ -106,56 +119,64 @@
           telefone2: '',
           bairro_id: '',
           endereco: '',
-          numero: ''
-
+          numero: '',
+          observacao: '',
+          municipio_id: ''
         },
-
+        municipios: [],
+        bairros: [],
         result: [],
         cards: [],
         payload: {}
       }
     },
-
+    mounted () {
+      this.$http.get('http://321b2b14.ngrok.io/api/v1/municipios').then(result => {
+        this.municipios = result.body.data
+      })
+    },
+    computed: {
+      municipiosToSelect () {
+        return this.municipios.map(item => ({label: item.nome, value: item.id}))
+      }
+    },
     methods: {
-      addCard () {
-        this.cards.push({
-          sexo: 'M',
-          idade: 0,
-          queixas: ''
+      treatValue (value) {
+        return Object.assign({}, value, {
+          municipio_id: value.municipio_id.value,
+          bairro_id: value.bairro_id.value
         })
       },
+      addCard () {
+        this.cards.push(
+          {
+            sexo: 'M',
+            idade: 0,
+            queixas: ''
+          })
+      },
       clearFields () {
-        console.log('chama eu', Object.keys(this.call))
         for (const key in Object.keys(this.call)) {
           this.call[key] = ''
         }
       },
       sendCall () {
-        this.$http.post('http://321b2b14.ngrok.io/api/v1/chamadas', this.call).then(result => {
-          console.log(result)
-          console.log(this.call)
+        console.log(this.treatValue(this.call))
+        this.$http.post('http://321b2b14.ngrok.io/api/v1/chamadas', this.treatValue(this.call)).then(result => {
           this.result = result.body.data
+
           this.clearFields()
         }, result => {
           this.result = result
         })
-      },
-      methods: {
-        addCard () {
-          this.cards.push(
-            {
-              sexo: 'M',
-              idade: 0,
-              queixas: ''
-            })
-          this.$http.get('http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/1/').then(result => {
-            console.log(result)
-            this.result = result.body.data
-            this.clearFields()
-          }, result => {
-            this.result = result
-          })
-        }
+      }
+    },
+    watch: {
+      'call.municipio_id': function (val) {
+        console.log('aaaaaa', val)
+        this.$http.get(`http://321b2b14.ngrok.io/api/v1/bairrospormunicipio/${val.value}/`).then(result => {
+          this.bairros = result.body.data.map(item => ({label: item.nome, value: item.id}))
+        })
       }
     }
   }
